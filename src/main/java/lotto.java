@@ -6,6 +6,7 @@ public class lotto {
     public static void main(String[] args) {
 
         Set<Integer> randNumbers = null;
+        int number = 0;
 
         //Get 6 random numbers from 49
         Set<Integer> allNumbers = new HashSet<>();
@@ -27,9 +28,15 @@ public class lotto {
         TreeSet<Integer> ticket = new TreeSet<>();
         Scanner scanner1 = new Scanner(System.in);
         while (ticket.size() < 6) {
-            int number = scanner1.nextInt();
-            ticket.add(number);
+            if (scanner1.hasNext("([1-9]|[1-3][0-9]|4[0-9])")) {
+                number = scanner1.nextInt();
+                ticket.add(number);
+            } else {
+                System.out.println("Not correct number");
+                scanner1.next();
+            }
         }
+
         //Check the result of game
         TreeSet<Integer> intersection = new TreeSet<>(ticket);
         intersection.retainAll(randNumbers);
